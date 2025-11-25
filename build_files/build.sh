@@ -12,6 +12,11 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y konsole
 
+sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
+dnf5 install -y liquidctl coolercontrol
+sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
+
+
 dnf5 remove -y waydroid
 
 # Use a COPR Example:
