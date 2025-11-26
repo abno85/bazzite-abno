@@ -17,7 +17,7 @@ dnf5 install -y liquidctl coolercontrol
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 
 
-dnf5 remove -y waydroid
+dnf5 remove -y tailscale waydroid
 
 # Use a COPR Example:
 #
