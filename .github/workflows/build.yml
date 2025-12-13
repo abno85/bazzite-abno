@@ -6,6 +6,11 @@ on:
       - main
   schedule:
     - cron: '05 10 * * *'  # 10:05am UTC everyday
+  image_version:
+    names:
+      - "ghcr.io/ublue-os/bazzite-nvidia-open"
+    versions:
+      - "stable"
   push:
     branches:
       - main
