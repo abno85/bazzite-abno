@@ -29,3 +29,7 @@ dnf5 remove -y tailscale waydroid
 #### Example for enabling a System Unit File
 
 #systemctl enable podman.socket
+
+# Clean up
+dnf5 autoremove
+dnf5 clean all
