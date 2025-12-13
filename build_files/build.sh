@@ -31,5 +31,5 @@ dnf5 remove -y tailscale waydroid
 #systemctl enable podman.socket
 
 # Clean up
-dnf5 autoremove
-dnf5 clean all
+dnf5 autoremove -y
+dnf5 clean -y all
