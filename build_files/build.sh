@@ -9,15 +9,24 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 install -y konsole
-
+# Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
-dnf5 install -y liquidctl coolercontrol
+
+# install extra packages from fedora repos
+dnf5 install -y \
+    codium \
+    coolercontrol \
+    konsole \
+    liquidctl \
+    virt-manager \
+
+# remove pre-installed packages
+dnf5 remove -y \
+    tailscale \
+    waydroid
+
+# Disable repos
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
-
-
-dnf5 remove -y tailscale waydroid
 
 # Use a COPR Example:
 #
