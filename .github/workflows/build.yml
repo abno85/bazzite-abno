@@ -4,13 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    schedule:
-      - cron: "05 05 * * *" # 05:05am UTC everyday
-  image_version:
-    names:
-      - "ghcr.io/ublue-os/bazzite-nvidia-open"
-    versions:
-      - "stable"
+  schedule:
+    - cron: "05 05 * * *" # 05:05am UTC everyday
   push:
     branches:
       - main
