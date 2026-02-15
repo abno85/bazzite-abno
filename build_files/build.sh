@@ -28,7 +28,6 @@ dnf5 install -y \
     coolercontrol \
     konsole \
     liquidctl \
-    netbird \
     netbird-ui \
     virt-manager \
 
