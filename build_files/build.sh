@@ -12,12 +12,24 @@ set -ouex pipefail
 # Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 
+cat /etc/yum.repos.d/netbird.repo <<EOF
+[netbird]
+name=netbird
+baseurl=https://pkgs.netbird.io/yum/
+enabled=1
+gpgcheck=0
+gpgkey=https://pkgs.netbird.io/yum/repodata/repomd.xml.key
+repo_gpgcheck=1
+EOF
+
 # install extra packages from fedora repos
 dnf5 install -y \
     codium \
     coolercontrol \
     konsole \
     liquidctl \
+    netbird \
+    netbird-ui \
     virt-manager \
 
 # remove pre-installed packages
@@ -26,6 +38,7 @@ dnf5 remove -y \
     waydroid
 
 # Disable repos
+sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/netbird.repo"
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 
 # Use a COPR Example:
