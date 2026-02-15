@@ -12,7 +12,7 @@ set -ouex pipefail
 # Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 
-cat /etc/yum.repos.d/netbird.repo <<EOF
+tee /etc/yum.repos.d/netbird.repo <<EOF
 [netbird]
 name=netbird
 baseurl=https://pkgs.netbird.io/yum/
