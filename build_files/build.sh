@@ -28,8 +28,11 @@ dnf5 install -y \
     coolercontrol \
     konsole \
     liquidctl \
-    netbird-ui \
-    virt-manager \
+    virt-manager
+
+rpm-ostree install -y \
+    netbird \
+    netbird-ui
 
 # remove pre-installed packages
 dnf5 remove -y \
