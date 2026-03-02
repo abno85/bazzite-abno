@@ -26,7 +26,6 @@ EOF
 dnf5 install -y \
     codium \
     coolercontrol \
-    konsole \
     liquidctl \
     virt-manager
 
