@@ -178,7 +178,7 @@ jobs:
       - name: Actions Ntfy
         run: |
           curl \
-            -u ":${{ secrets.NTFY_TOKEN }}"" \
+            -u ":${{ secrets.NTFY_TOKEN }}" \
             -H "Title: New Bazzite image is ready to deploy!" \
             -H "Content-Type: text/plain" \
             -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}' \
