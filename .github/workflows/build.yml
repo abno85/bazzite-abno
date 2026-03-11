@@ -181,5 +181,7 @@ jobs:
             -u ":${{ secrets.NTFY_TOKEN }}" \
             -H "Title: New Bazzite image is ready to deploy!" \
             -H "Content-Type: text/plain" \
+            -H "Icon: https://avatars.githubusercontent.com/u/120078124?s=128" \
+            -H "Actions: view, Latest Release Notes, https://github.com/ublue-os/bazzite/releases/latest" \
             -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}' \
             ${{ secrets.NTFY_URL }}
