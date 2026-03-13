@@ -36,6 +36,7 @@ dnf5 install -y \
 
 # remove pre-installed packages
 dnf5 remove -y \
+    code \
     tailscale \
     waydroid
 
