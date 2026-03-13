@@ -12,8 +12,6 @@ set -ouex pipefail
 # Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 
-dnf5 -y copr enable scottames/ghostty
-
 # tee /etc/yum.repos.d/netbird.repo <<EOF
 # [netbird]
 # name=netbird
@@ -29,7 +27,6 @@ dnf5 -y copr enable scottames/ghostty
 dnf5 install -y \
     codium \
     coolercontrol \
-    ghostty \
     liquidctl \
     virt-manager
 
@@ -46,7 +43,6 @@ dnf5 remove -y \
 # Disable repos
 # sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/netbird.repo"
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
-dnf5 -y copr disable scottames/ghostty
 
 # Use a COPR Example:
 #
