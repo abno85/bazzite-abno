@@ -27,6 +27,7 @@ sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 dnf5 install -y \
     codium \
     coolercontrol \
+    kde-partitionmanager \
     liquidctl \
     virt-manager
 
