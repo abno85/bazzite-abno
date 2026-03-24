@@ -29,7 +29,8 @@ dnf5 install -y \
     coolercontrol \
     kde-partitionmanager \
     liquidctl \
-    virt-manager
+    virt-manager \
+    yakuake
 
 #rpm-ostree install -y \
 #    netbird \
