@@ -29,6 +29,7 @@ dnf5 install -y \
     coolercontrol \
     kde-partitionmanager \
     liquidctl \
+    opensnitch \
     virt-manager \
     yakuake
 
