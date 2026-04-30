@@ -29,17 +29,62 @@ dnf5 install -y \
     coolercontrol \
     kde-partitionmanager \
     liquidctl \
-    opensnitch \
+    podman-machine \
+    podman-tui \
+    rclone \
+    restic \
     virt-manager \
+    waypipe \
     yakuake
+
+dnf5 --setopt=install_weak_deps=False install -y \
+    rocm-hip \
+    rocm-opencl \
+    rocm-clinfo \
+    rocm-smi \
+    qemu \
+    libvirt \
+    qemu-kvm \
+    virt-manager \
+    edk2-ovmf \
+    guestfs-tools
 
 #rpm-ostree install -y \
 #    netbird \
 #    netbird-ui
 
+# Install Docker
+docker_pkgs=(
+    containerd.io
+    docker-buildx-plugin
+    docker-ce
+    docker-ce-cli
+    docker-compose-plugin
+)
+dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
+dnf5 config-manager setopt docker-ce-stable.enabled=0
+dnf5 install -y --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
+    # Use test packages if docker pkgs is not available for f42
+    if (($(lsb_release -sr) == 42)); then
+        echo "::info::Missing docker packages in f42, falling back to test repos..."
+        dnf5 install -y --enablerepo="docker-ce-test" "${docker_pkgs[@]}"
+    fi
+}
+
+
+# Load iptable_nat module for docker-in-docker.
+# See:
+#   - https://github.com/ublue-os/bluefin/issues/2365
+#   - https://github.com/devcontainers/features/issues/1235
+mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
+iptable_nat
+EOF
+
+
 # remove pre-installed packages
 dnf5 remove -y \
     code \
+    mesa-libOpenCL \
     tailscale \
     waydroid
 
@@ -58,7 +103,9 @@ sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 #### Example for enabling a System Unit File
 
 #systemctl enable podman.socket
-
+systemctl enable bazzite-dx-groups.service
+systemctl enable docker.socket
+systemctl enable ublue-system-setup.service
 
 # Clean up
 dnf5 autoremove -y
