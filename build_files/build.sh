@@ -105,7 +105,7 @@ sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 #systemctl enable podman.socket
 #systemctl enable bazzite-dx-groups.service
 systemctl enable docker.socket
-systemctl enable ublue-system-setup.service
+#systemctl enable ublue-system-setup.service
 
 # Clean up
 dnf5 autoremove -y
