@@ -103,7 +103,7 @@ sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 #### Example for enabling a System Unit File
 
 #systemctl enable podman.socket
-systemctl enable bazzite-dx-groups.service
+#systemctl enable bazzite-dx-groups.service
 systemctl enable docker.socket
 systemctl enable ublue-system-setup.service
 
