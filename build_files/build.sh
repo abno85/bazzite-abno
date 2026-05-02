@@ -24,34 +24,22 @@ sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 
 
 # install extra packages from fedora repos
-dnf5 install -y \
+dnf5 --setopt=install_weak_deps=False install -y \
     codium \
     coolercontrol \
+    edk2-ovmf \
+    guestfs-tools \
     kde-partitionmanager \
+    libvirt \
     liquidctl \
     podman-machine \
     podman-tui \
+    qemu-kvm \
     rclone \
     restic \
     virt-manager \
     waypipe \
     yakuake
-
-dnf5 --setopt=install_weak_deps=False install -y \
-    rocm-hip \
-    rocm-opencl \
-    rocm-clinfo \
-    rocm-smi \
-    qemu \
-    libvirt \
-    qemu-kvm \
-    virt-manager \
-    edk2-ovmf \
-    guestfs-tools
-
-#rpm-ostree install -y \
-#    netbird \
-#    netbird-ui
 
 # Install Docker
 docker_pkgs=(
@@ -71,7 +59,6 @@ dnf5 install -y --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
     fi
 }
 
-
 # Load iptable_nat module for docker-in-docker.
 # See:
 #   - https://github.com/ublue-os/bluefin/issues/2365
@@ -80,11 +67,15 @@ mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
 iptable_nat
 EOF
 
+#rpm-ostree install -y \
+#    netbird \
+#    netbird-ui
 
 # remove pre-installed packages
 dnf5 remove -y \
     code \
     mesa-libOpenCL \
+    makemkv \
     tailscale \
     waydroid
 
@@ -102,9 +93,9 @@ sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
 
 #### Example for enabling a System Unit File
 
+systemctl enable docker.socket
 #systemctl enable podman.socket
 #systemctl enable bazzite-dx-groups.service
-systemctl enable docker.socket
 #systemctl enable ublue-system-setup.service
 
 # Clean up
