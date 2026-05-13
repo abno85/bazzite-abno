@@ -11,6 +11,7 @@ set -ouex pipefail
 
 # Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
+dnf5 -y copr enable lizardbyte/beta
 
 # tee /etc/yum.repos.d/netbird.repo <<EOF
 # [netbird]
@@ -24,7 +25,7 @@ sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
 
 
 # install extra packages from fedora repos
-dnf5 --setopt=install_weak_deps=False install -y \
+dnf5 -y --setopt=install_weak_deps=False install \
     codium \
     coolercontrol \
     edk2-ovmf \
@@ -37,6 +38,7 @@ dnf5 --setopt=install_weak_deps=False install -y \
     qemu-kvm \
     rclone \
     restic \
+    Sunshine \
     virt-manager \
     waypipe \
     yakuake
@@ -51,7 +53,7 @@ docker_pkgs=(
 )
 dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
 dnf5 config-manager setopt docker-ce-stable.enabled=0
-dnf5 install -y --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
+dnf5 -y install --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
     # Use test packages if docker pkgs is not available for f42
     if (($(lsb_release -sr) == 42)); then
         echo "::info::Missing docker packages in f42, falling back to test repos..."
@@ -72,7 +74,7 @@ EOF
 #    netbird-ui
 
 # remove pre-installed packages
-dnf5 remove -y \
+dnf5 -y remove \
     code \
     mesa-libOpenCL \
     makemkv \
@@ -83,6 +85,7 @@ dnf5 remove -y \
 # Disable repos
 # sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/netbird.repo"
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
+dnf5 -y copr disable lizardbyte/beta
 
 # Use a COPR Example:
 #
@@ -99,5 +102,5 @@ systemctl enable docker.socket
 #systemctl enable ublue-system-setup.service
 
 # Clean up
-dnf5 autoremove -y
-dnf5 clean -y all
+dnf5 -y autoremove
+dnf5 -y clean all
