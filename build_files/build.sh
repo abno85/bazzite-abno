@@ -30,6 +30,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     coolercontrol \
     edk2-ovmf \
     guestfs-tools \
+    headsetcontrol \
     kde-partitionmanager \
     libvirt \
     liquidctl \
