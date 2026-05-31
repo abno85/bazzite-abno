@@ -177,10 +177,10 @@ jobs:
 
       - name: Actions Gotify
         run: |
-          MESSAGE="Repo: ${{ github.repository }} \
-          Commit: ${{ github.sha }} \
-          Ref: ${{ github.ref }} \
-          Status: ${{ job.status}}"
+          MESSAGE="Repo: ${{ github.repository }}
+          Commit: ${{ github.sha }}
+          Status: ${{ job.status}}
+          URL: https://github.com/ublue-os/bazzite/releases/latest"
           curl -X POST \
             -F "title=New Bazzite image is ready to deploy!" \
             -F "message=$MESSAGE" \
