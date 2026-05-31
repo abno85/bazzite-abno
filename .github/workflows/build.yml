@@ -175,13 +175,25 @@ jobs:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
-      - name: Actions Ntfy
+      - name: Actions Gotify
         run: |
-          curl \
-            -u ":${{ secrets.NTFY_TOKEN }}" \
-            -H "Title: New Bazzite image is ready to deploy!" \
-            -H "Content-Type: text/plain" \
-            -H "Icon: https://avatars.githubusercontent.com/u/120078124?s=128" \
-            -H "Actions: view, Latest Release Notes, https://github.com/ublue-os/bazzite/releases/latest" \
-            -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}\nSEC: ${{ secrets.SIGNING_SECRET}}'  \
-            ${{ secrets.NTFY_URL }}
+          MESSAGE="Repo: ${{ github.repository }} \
+          Commit: ${{ github.sha }} \
+          Ref: ${{ github.ref }} \
+          Status: ${{ job.status}}"
+          curl -X POST \
+            -F "title=New Bazzite image is ready to deploy!" \
+            -F "message=$MESSAGE" \
+            -F "priority=5" \
+            ${{ secrets.GOTIFY_URL }}
+
+      # - name: Actions Ntfy
+      #   run: |
+      #     curl \
+      #       -u ":${{ secrets.NTFY_TOKEN }}" \
+      #       -H "Title: New Bazzite image is ready to deploy!" \
+      #       -H "Content-Type: text/plain" \
+      #       -H "Icon: https://avatars.githubusercontent.com/u/120078124?s=128" \
+      #       -H "Actions: view, Latest Release Notes, https://github.com/ublue-os/bazzite/releases/latest" \
+      #       -d $'Repo: ${{ github.repository }}\nCommit: ${{ github.sha }}\nRef: ${{ github.ref }}\nStatus: ${{ job.status}}'  \
+      #       ${{ secrets.NTFY_URL }}
