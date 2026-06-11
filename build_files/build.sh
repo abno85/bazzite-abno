@@ -77,6 +77,7 @@ EOF
 # remove pre-installed packages
 dnf5 -y remove \
     code \
+    kio-gdrive \
     mesa-libOpenCL \
     makemkv \
     tailscale \
