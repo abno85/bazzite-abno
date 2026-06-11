@@ -175,26 +175,21 @@ jobs:
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
-      - name: Actions Gotify
-        run: |
-          MESSAGE="Repo: ${{ github.repository }}
-          Commit: ${{ github.sha }}
-          Status: ${{ job.status}}
-          URL: https://github.com/ublue-os/bazzite/releases/latest"
-          curl -s -L -X POST \
-            -F "title=New Bazzite image is ready to deploy!" \
-            -F "message=$MESSAGE" \
-            -F "priority=5" \
-            ${{ secrets.GOTIFY_URL }}
+      # - name: Actions Gotify
+      #   run: |
+      #     MESSAGE="Repo: ${{ github.repository }}
+      #     Commit: ${{ github.sha }}
+      #     Status: ${{ job.status}}
+      #     URL: https://github.com/ublue-os/bazzite/releases/latest"
+      #     curl -s -L -X POST \
+      #       -F "title=New Bazzite image is ready to deploy!" \
+      #       -F "message=$MESSAGE" \
+      #       -F "priority=5" \
+      #       ${{ secrets.GOTIFY_URL }}
       
       - name: Run Upgrade on argon via xyOps
         run: |
-          curl -s -L ${{ secrets.XYOPS_URL_UPGRADE_ARGON }} && \
-          curl -s -L -X POST \
-            -F "title=Auto Upgrade started on ARGON" \
-            -F "message=Upgrade started on ARGON" \
-            -F "priority=5" \
-            ${{ secrets.GOTIFY_URL }}
+          curl -s -L ${{ secrets.XYOPS_URL_UPGRADE_ARGON }}
 
       # - name: Actions Ntfy
       #   run: |
