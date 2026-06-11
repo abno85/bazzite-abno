@@ -181,9 +181,18 @@ jobs:
           Commit: ${{ github.sha }}
           Status: ${{ job.status}}
           URL: https://github.com/ublue-os/bazzite/releases/latest"
-          curl -X POST \
+          curl -s -L -X POST \
             -F "title=New Bazzite image is ready to deploy!" \
             -F "message=$MESSAGE" \
+            -F "priority=5" \
+            ${{ secrets.GOTIFY_URL }}
+      
+      - name: Run Upgrade on argon via xyOps
+        run: |
+          curl -s -L ${{ secrets.XYOPS_URL_UPGRADE_ARGON }} && \
+          curl -s -L -X POST \
+            -F "title=Auto Upgrade started on ARGON" \
+            -F "message=Upgrade started on ARGON" \
             -F "priority=5" \
             ${{ secrets.GOTIFY_URL }}
 
