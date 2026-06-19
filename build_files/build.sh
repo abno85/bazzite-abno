@@ -34,6 +34,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     kde-partitionmanager \
     libvirt \
     liquidctl \
+    pipewire-module-roc \
     podman-machine \
     podman-tui \
     qemu-kvm \
