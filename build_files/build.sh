@@ -26,6 +26,7 @@ dnf5 -y copr enable lizardbyte/beta
 
 # install extra packages from fedora repos
 dnf5 -y --setopt=install_weak_deps=False install \
+    chromium \
     codium \
     coolercontrol \
     edk2-ovmf \
