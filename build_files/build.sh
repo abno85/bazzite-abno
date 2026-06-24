@@ -35,6 +35,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     kde-partitionmanager \
     libvirt \
     liquidctl \
+    pipewire-module-roc \
     podman-machine \
     podman-tui \
     qemu-kvm \
@@ -42,6 +43,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     restic \
     Sunshine \
     virt-manager \
+    waypipe \
     yakuake
 
 # Install Docker
