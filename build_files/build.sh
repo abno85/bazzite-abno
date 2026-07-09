@@ -30,6 +30,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     codium \
     coolercontrol \
     edk2-ovmf \
+    fscrypt \
     guestfs-tools \
     headsetcontrol \
     kde-partitionmanager \
