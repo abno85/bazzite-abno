@@ -36,6 +36,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     kde-partitionmanager \
     libvirt \
     liquidctl \
+    localsend \
     pipewire-module-roc \
     podman-machine \
     podman-tui \
@@ -84,7 +85,7 @@ dnf5 -y remove \
     mesa-libOpenCL \
     makemkv \
     tailscale \
-    waydroid
+    waydroid*
 
 
 # Disable repos
