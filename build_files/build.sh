@@ -44,6 +44,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     rclone \
     restic \
     Sunshine \
+    uxplay \
     virt-manager \
     waypipe \
     yakuake
