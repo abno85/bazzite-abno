@@ -85,8 +85,8 @@ dnf5 -y remove \
     kio-gdrive \
     mesa-libOpenCL \
     makemkv \
-    tailscale \
-    waydroid*
+    tailscale
+    # waydroid*
 
 
 # Disable repos
