@@ -51,7 +51,7 @@ dnf5 -y --setopt=install_weak_deps=False install \
     # Sunshine \
 
 # Install OpenLogi
-dnf5 install -y https://github.com/AprilNEA/OpenLogi/releases/download/v0.9.0/openlogi-v0.9.0-linux-amd64.rpm
+rpm-ostree install -y https://github.com/AprilNEA/OpenLogi/releases/download/v0.9.0/openlogi-v0.9.0-linux-amd64.rpm
 
 # # Install Docker
 # docker_pkgs=(
