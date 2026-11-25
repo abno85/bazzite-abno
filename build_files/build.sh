@@ -11,7 +11,7 @@ set -ouex pipefail
 
 # Enable repos
 sed -i 's@enabled=0@enabled=1@g' "/etc/yum.repos.d/terra.repo"
-dnf5 -y copr enable lizardbyte/beta
+# dnf5 -y copr enable lizardbyte/beta
 
 # tee /etc/yum.repos.d/netbird.repo <<EOF
 # [netbird]
@@ -96,7 +96,7 @@ dnf5 -y remove \
 # Disable repos
 # sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/netbird.repo"
 sed -i 's@enabled=1@enabled=0@g' "/etc/yum.repos.d/terra.repo"
-dnf5 -y copr disable lizardbyte/beta
+# dnf5 -y copr disable lizardbyte/beta
 
 # Use a COPR Example:
 #
@@ -107,7 +107,7 @@ dnf5 -y copr disable lizardbyte/beta
 
 #### Example for enabling a System Unit File
 
-systemctl enable docker.socket
+#systemctl enable docker.socket
 #systemctl enable podman.socket
 #systemctl enable bazzite-dx-groups.service
 #systemctl enable ublue-system-setup.service
